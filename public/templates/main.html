@@ -1,0 +1,137 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <h1 class="mt-5">Bienvenido</h1><br>
+            <p class="lead">A través de nuestra aplicación usted podrá explorar entre diversas oportunidades profesionales
+                ofertadas por cientificos alrededor del planeta. </p>
+            <ul class="list-unstyled">
+                <li>Twitcher API</li>
+            </ul>
+        </div>
+    </div>
+</div><br>
+<div class="panel panel-default" ng-show="supplier._id!=null">
+    <div class="panel-heading">Alta de ofertas</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row">
+                    <input id="supp" value="{{supplier._id}}" class="form-control" type="hidden">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <input id="id" class="form-control" type="hidden" ng-model="oferta._id" placeholder="Ej. ID"><br>
+                            <input id="poster"  class="form-control" type="hidden" ng-model="oferta.poster" placeholder="Ej. Poster"><br>
+                            <div class="col-md-4">
+                                <label for="titulo">Título</label>
+                                <input id="titulo" class="form-control" type="text" ng-model="oferta.title" placeholder="Ej. Estancia de investigación"><br>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="requerimieitnos">Requerimientos</label>
+                                <input id="requerimieitnos" class="form-control" type="text" ng-model="oferta.requirements" placeholder="Ej. ISC"><br>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="subject_matter">Tema</label>
+                                <input id="subject_matter" class="form-control" type="text" ng-model="oferta.subject_matter" placeholder="Ej. Cómputo en la nube"><br>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-12">
+
+                        <div class="row">
+
+                            <div class="col-md-4">
+                                <label for="fecha">Fecha</label>
+                                <input id="fecha" class="form-control" type="text" ng-model="oferta.date_posted" placeholder="Ej. 01-01-2017"><br>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="Presupuesto">Presupuesto</label>
+                                <input id="Presupuesto" class="form-control" type="text" ng-model="oferta.budget" placeholder="Ej. $20,000"><br>
+                            </div>
+
+                                <input id="lat" class="form-control" type="hidden" ng-model="oferta.lat" placeholder="Ej. 32.87267"><br>
+
+
+                                <input id="lng" class="form-control" type="hidden" ng-model="oferta.lon" placeholder="Ej. -102.773878"><br>
+
+                            <div class="col-md-4">
+                                <label for="descripcion">Descripción</label>
+                                <textarea  id="descripcion"class="form-control" rows="5" ng-model="oferta.description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div><br>
+                <button class="btn btn-success button" ng-click="addOferta()">Guardar</button>&nbsp;&nbsp;
+                <button class="btn btn-info button" ng-click="updateOferta(oferta)">Actualizar</button>
+            </div>
+            <div class="col-lg-4">
+               <!-- <ng-map zoom="14" center="[31.8693236, -116.6688635]">-->
+                <ng-map zoom="14" center="[{{oferta.lat}},{{oferta.lon}}]">
+                    <marker id="marker" position="[{{oferta.lat}},{{oferta.lon}}]" animation="Animation.DROP"></marker>
+                </ng-map>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+</div>
+
+
+<div class="card card-body">
+    <h4 class="card-title">Ofertas</h4>
+    <p class="card-text"></p>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Titulo</th>
+            <th>Descripción</th>
+
+            <th>Tema</th>
+            <th>Fecha</th>
+
+            <th>Responsable</th>
+
+            <th> </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="oferta in ofertas" >
+            <td>{{$index + 1}}</td>
+            <td>{{oferta.title}}</td>
+            <td>{{oferta.description}}</td>
+
+            <td>{{oferta.subject_matter}}</td>
+            <td>{{oferta.date_posted}}</td>
+
+            <td>{{oferta.poster.name}}<br>{{oferta.poster.email}}</td>
+
+            <td>
+                <!--<a ng-click="findOferta(oferta._id)" title="Buscar"><span class="glyphicon glyphicon-search"></span></a>&nbsp;&nbsp;&nbsp;-->
+                <a href="#!/ofertas/{{oferta._id}}" title="Buscar"><span class="glyphicon glyphicon-search"></span></a>&nbsp;&nbsp;&nbsp;
+                <a href="" ng-show="oferta.poster._id===supplier._id" ng-click="showOferta(oferta._id)" title="Actualizar"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;
+                <a href="" ng-show="oferta.poster._id===supplier._id" ng-click="deleteOferta(oferta._id)" title="Eliminar"><span class="glyphicon glyphicon-trash"></span></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div><br><br>
+<div class="row">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6" style="text-align: center">
+        <a class="twitter-timeline" href="https://twitter.com/hashtag/ClientTwitcher" data-chrome="nofooter transparent noscrollbar noheader" data-widget-id="937460373262708736">Tweets sobre #ClientTwitcher</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+    </div>
+    <div class="col-lg-3"></div>
+</div>

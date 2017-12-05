@@ -1,0 +1,70 @@
+<br>
+<br>
+<div class="card card-body">
+    <h4 class="card-title">Detalle de oferta</h4><br>
+    <p class="card-text">  </p>
+    <table class="table no-border" style="border:none;">
+        <tbody>
+        <tr>
+            <td>Titulo</td>
+            <td>{{oferta.title}}</td>
+        </tr>
+        <tr>
+            <td>Descripción</td>
+            <td>{{oferta.description}}</td>
+        </tr>
+        <tr>
+            <td>Requerimientos</td>
+            <td>{{oferta.requirements}}</td>
+        </tr>
+        <tr>
+            <td>Tema</td>
+            <td>{{oferta.subject_matter}}</td>
+        </tr>
+        <tr>
+            <td>Fecha</td>
+            <td>{{oferta.date_posted}}</td>
+        </tr>
+        <tr>
+            <td>Estatus</td>
+            <td>{{oferta.is_valid}}</td>
+        </tr>
+        <tr>
+            <td>Recompensa</td>
+            <td>{{oferta.budget}}</td>
+        </tr>
+        <tr>
+            <td><h4 class="card-title">Datos de Ofertador</h4><br></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Nombre</td>
+            <td>{{oferta.poster.name}}</td>
+        </tr>
+        <tr>
+            <td>Institución</td>
+            <td>{{oferta.poster.institution}}</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>{{oferta.poster.email}}</td>
+        </tr>
+        <tr>
+            <td>URL</td>
+            <td>{{oferta.poster.homepage}}</td>
+        </tr>
+        </tbody>
+    </table><br>
+    <div class="row">
+        <div class="col-xs-4"></div>
+        <div class="col-xs-4"  style="text-align: center" ><a href="#!/"><button type="button" class="btn btn-primary button">Regresar</button></a></div>
+        <div class="col-xs-4"></div>
+    </div><br>
+
+</div>
+
+<br>
+<ng-map zoom="15" center="[{{oferta.lat}}, {{oferta.lon}}]">
+    <marker id="marcador" position="[{{oferta.lat}}, {{oferta.lon}}]" animation="Animation.DROP"></marker>
+</ng-map>
+</div>

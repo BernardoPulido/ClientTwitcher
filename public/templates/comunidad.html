@@ -1,0 +1,70 @@
+<br><h2>Comunidad</h2><br>
+<div class="panel panel-default">
+    <div class="panel-heading">Suscribete</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <input id="titulo" class="form-control" type="hidden" ng-model="bidder._id" placeholder="Ej. ID"><br>
+                    <div class="col-md-3">
+                        <label for="titulo">Nombre</label>
+                        <input id="titulo" class="form-control" type="text" ng-model="bidder.name" placeholder="Ej. Luis Pulido"><br>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="titulo">Grado</label>
+                        <input id="titulo" class="form-control" type="text" ng-model="bidder.grade_achieved" placeholder="Ej. Maestría en ciencias"><br>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="anio">Correo electrónico</label>
+                        <input id="anio" class="form-control" type="text" ng-model="bidder.email" placeholder="Ej. lpulido@cicese.edu.mx"><br>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="genero">Link CV</label>
+                        <input id="genero" class="form-control" type="text" ng-model="bidder.link_to_cv" placeholder="Ej. lpulido.com.mx"><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn btn-success button" ng-click="addBidder()">Guardar</button>&nbsp;&nbsp;
+        <button class="btn btn-info button" ng-click="updateBidder(bidder)">Actualizar</button>
+
+
+    </div>
+</div>
+
+
+<div class="card card-body">
+    <h4 class="card-title">Comunidad</h4>
+    <p class="card-text"></p>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Grado</th>
+            <th>Correo electrónico</th>
+            <th>CV</th>
+            <th> </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="bidder in bidders" >
+            <td>{{$index + 1}}</td>
+            <td>{{bidder.name}}</td>
+            <td>{{bidder.grade_achieved}}</td>
+            <td>{{bidder.email}}</td>
+            <td>{{bidder.link_to_cv}}</td>
+
+            <td>
+                <a href="" ng-click="findBidder(bidder._id)" title="Buscar"><span class="glyphicon glyphicon-search"></span></a>&nbsp;&nbsp;&nbsp;
+                <!--<a href="#!/{{bidder._id}}" title="Buscar"><span class="glyphicon glyphicon-search"></span></a>&nbsp;&nbsp;&nbsp;-->
+                <a href="" ng-click="showBidder(bidder._id)" title="Actualizar"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;
+                <a href="" ng-click="deleteBidder(bidder._id)" title="Eliminar"><span class="glyphicon glyphicon-trash"></span></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
